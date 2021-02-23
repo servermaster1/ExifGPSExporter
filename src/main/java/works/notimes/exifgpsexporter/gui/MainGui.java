@@ -221,6 +221,7 @@ public class MainGui extends javax.swing.JFrame {
         File input = new File(jTextField1.getText());
         File output = new File(jTextField2.getText());
         List<CsvEntry> li = new LinkedList();
+        boolean error = false;
 
         try {
             li.add(new CsvEntry("FileName", "GPSVersionID", "GPSLatitudeRef", "GPSLatitude",
@@ -232,13 +233,17 @@ public class MainGui extends javax.swing.JFrame {
             
             if (!(input.exists())) {
                 JOptionPane.showMessageDialog(new JFrame(), "Please choose a Folder", "Warning", JOptionPane.WARNING_MESSAGE);
+                error = true;
             } else if (jTextField2.getText() == "" || jTextField2.getText() == null) {
                 JOptionPane.showMessageDialog(new JFrame(), "Please Choose a correct CSV destiantion", "Warning", JOptionPane.WARNING_MESSAGE);
+                error = true;
             } else if (!output.exists()) {
                 if (!output.createNewFile()) {
                     JOptionPane.showMessageDialog(new JFrame(), "Please Choose a correct CSV destiantion", "Warning", JOptionPane.WARNING_MESSAGE);
+                    error = true;
                 }
-            } else {
+            } 
+            if(!error){
                 output.delete();
                 output.createNewFile();
                 File[] directoryListing = input.listFiles(IMAGE_FILTER);
