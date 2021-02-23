@@ -311,7 +311,7 @@ public class MainGui extends javax.swing.JFrame {
                 fw.write(c.toString() + "\n");
             }
             fw.close();
-            
+            JOptionPane.showMessageDialog(new JFrame(), "Exported " + ((li.size())-1) + " images", "Information", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(new JFrame(), ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
